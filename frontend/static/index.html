@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOBI - Vodafone Sales Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div class="logo-text">
+                    <h1>TOBI</h1>
+                    <p>Vodafone Sales Assistant</p>
+                </div>
+            </div>
+            <div class="status">
+                <span class="status-indicator"></span>
+                <span class="status-text">Online</span>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome message -->
+                <div class="message bot-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            <p>Hello! I'm TOBI, your Vodafone sales assistant. I'm here to help you find the perfect mobile phone and tariff for your needs.</p>
+                            <p>What can I help you with today?</p>
+                        </div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations Panel -->
+            <div class="recommendations-panel" id="recommendationsPanel" style="display: none;">
+                <h3>Recommended Products</h3>
+                <div class="recommendations-grid" id="recommendationsGrid">
+                    <!-- Recommendations will be populated here -->
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-container">
+                    <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+                    <button id="sendButton" class="send-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <div class="input-suggestions" id="inputSuggestions">
+                    <button class="suggestion-button">I'm looking for a new phone</button>
+                    <button class="suggestion-button">Show me iPhone deals</button>
+                    <button class="suggestion-button">I need unlimited data</button>
+                    <button class="suggestion-button">What's the best Android phone?</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+            <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <span>TOBI is typing...</span>
+        </div>
+    </div>
+
+    <script src="../config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
