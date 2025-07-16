@@ -1,4 +1,3 @@
-```markdown
 # TOBI: Conversational Sales Bot Development Guide for Cursor (with Generative AI)
 
 This guide outlines the development of a Proof of Concept (POC) for TOBI, a conversational sales bot for Vodafone UK, leveraging Generative AI.
@@ -68,32 +67,32 @@ playwright install  # Install browser binaries
 
 ### A. Data Acquisition and Preprocessing
 
-1. **Web Scraping:** Extract device data (name, URL, price, storage, data allowance, contract length, etc.) from the Vodafone UK website using Playwright (recommended for handling dynamic content and JavaScript rendering).
-2. **Data Cleaning and Formatting:** Structure the scraped data into a usable format (JSON files for POC).
-3. **Embedding Creation:** Generate embeddings for each product using OpenAI's text-embedding-ada-002 or sentence-transformers models.
+- [x] **Web Scraping:** Extract device data (name, URL, price, storage, data allowance, contract length, etc.) from the Vodafone UK website using Playwright (recommended for handling dynamic content and JavaScript rendering).
+- [x] **Data Cleaning and Formatting:** Structure the scraped data into a usable format (JSON files for POC).
+- [x] **Embedding Creation:** Generate embeddings for each product using OpenAI's text-embedding-ada-002 or sentence-transformers models.
 
 ### B. Conversational Flow Design
 
-1. **Prompt Engineering:** Craft effective prompts and prompt templates using LangChain for dynamic and context-aware responses.
-2. **Context Management:** Use LangChain's ConversationBufferMemory to maintain conversation context and user preferences.
-3. **Function Calling:** Implement OpenAI function calling for structured data collection (budget, preferences, usage patterns).
-4. **Fallback Handling:** Design fallback mechanisms for inappropriate or irrelevant LLM responses using LangChain's output parsers.
+- [x] **Prompt Engineering:** Craft effective prompts and prompt templates using LangChain for dynamic and context-aware responses.
+- [x] **Context Management:** Use LangChain's ConversationBufferMemory to maintain conversation context and user preferences.
+- [ ] **Function Calling:** Implement OpenAI function calling for structured data collection (budget, preferences, usage patterns).
+- [ ] **Fallback Handling:** Design fallback mechanisms for inappropriate or irrelevant LLM responses using LangChain's output parsers.
 
 ### C. Backend API Development (Python)
 
-1. **LangChain Setup:** Set up LangChain with OpenAI integration for conversation management.
-2. **Conversation Chain:** Create a conversation chain with memory using LangChain's ConversationChain.
-3. **Function Calling:** Implement OpenAI function calling for structured user preference collection.
-4. **Vector Database Integration (Optional):** Integrate Faiss for semantic search or use simple similarity matching with sentence-transformers.
-5. **Dynamic Response Generation:** Use LangChain prompt templates and chains for context-aware responses.
-6. **Semantic Search:** Implement product similarity search using embeddings (OpenAI text-embedding-ada-002 or sentence-transformers).
-7. **Recommendation Logic:** Combine user preferences collected via function calling with semantic search results.
+- [x] **LangChain Setup:** Set up LangChain with OpenAI integration for conversation management.
+- [x] **Conversation Chain:** Create a conversation chain with memory using LangChain's ConversationChain.
+- [ ] **Function Calling:** Implement OpenAI function calling for structured user preference collection.
+- [ ] **Vector Database Integration (Optional):** Integrate Faiss for semantic search or use simple similarity matching with sentence-transformers.
+- [x] **Dynamic Response Generation:** Use LangChain prompt templates and chains for context-aware responses.
+- [x] **Semantic Search:** Implement product similarity search using embeddings (OpenAI text-embedding-ada-002 or sentence-transformers).
+- [x] **Recommendation Logic:** Combine user preferences collected via function calling with semantic search results.
 
 ### D. Frontend Development
 
-1. **User Interface:** Create a simple chat interface using HTML, CSS, and JavaScript.
-2. **API Integration:** Connect the frontend to the backend API.
-3. **Displaying Recommendations:** Display the recommended device URL clearly.
+- [x] **User Interface:** Create a simple chat interface using HTML, CSS, and JavaScript.
+- [x] **API Integration:** Connect the frontend to the backend API.
+- [x] **Displaying Recommendations:** Display the recommended device URL clearly.
 
 ### E. Testing and Refinement
 
@@ -121,4 +120,3 @@ Consider deploying the backend API to a platform like Heroku or PythonAnywhere.
 * **Provide clear instructions for running the application locally.**
 
 This guide provides a roadmap for developing TOBI.  Iterate and refine based on user feedback for the best possible user experience.  Continuous monitoring and refinement are crucial when working with LLMs.
-```
