@@ -13,6 +13,7 @@ class Recommendation(BaseModel):
     url: str
     storage_options: List[str]
     brand: str
+    device_cost: Optional[float] = None
 
 class ChatResponse(BaseModel):
     """Response model for the /chat endpoint."""

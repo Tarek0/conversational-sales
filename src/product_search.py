@@ -36,6 +36,7 @@ class Product:
     storage_options: List[str] = field(default_factory=list)
     brand: str = ""
     features: List[str] = field(default_factory=list)
+    device_cost: Optional[float] = None
 
     def __post_init__(self):
         """Sets the brand based on the product name."""

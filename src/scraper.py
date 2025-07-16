@@ -109,8 +109,11 @@ class VodafoneDataScraper:
             accept_button = page.get_by_role("button", name="Accept all cookies")
             logging.info("Found cookie consent button. Clicking 'Accept all cookies'.")
             await accept_button.click(timeout=5000)
-            await page.wait_for_timeout(2000) # Wait for any animations or overlays to clear
-            logging.info("Successfully clicked 'Accept all cookies'.")
+            await page.wait_for_timeout(1000) # Wait for animations
+            
+            # Forcefully remove the cookie banner to prevent it from interfering with clicks
+            await page.evaluate("document.getElementById('onetrust-consent-sdk')?.remove()")
+            logging.info("Successfully clicked 'Accept all cookies' and removed the banner.")
         except Exception as e:
             logging.warning(f"Could not click the 'Accept all cookies' button. It might not be present or visible. Error: {e}")
 
@@ -153,6 +156,14 @@ class VodafoneDataScraper:
         """Scrape a single product page for details, including storage options."""
         try:
             await page.goto(url, wait_until="domcontentloaded")
+
+            # Handle "Already with us?" popup using the provided test ID
+            try:
+                await page.get_by_test_id("newOrExisting-cta-new").click(timeout=5000)
+                logging.info("Clicked 'new customer' button successfully.")
+                await page.wait_for_timeout(1000)  # Wait for popup to close
+            except Exception:
+                logging.info("Did not find or could not click 'new customer' button. Assuming it is not present.")
 
             # --- Product Name Extraction ---
             name = ""
@@ -244,11 +255,32 @@ class VodafoneDataScraper:
 
             final_description = detailed_description.strip() if detailed_description else description
 
+            # --- Device Cost Extraction ---
+            device_cost = None
+            try:
+                # Look for an element containing the text "Total device cost". This is more robust.
+                cost_locator = page.locator('*:text-matches("Total device cost", "i")').first
+                await cost_locator.wait_for(timeout=3000)
+                cost_text = await cost_locator.text_content()
+                
+                logging.info(f"Found cost-related text for {url}: '{cost_text}'")
+
+                match = re.search(r'£([\d,]+\.?\d*)', cost_text)
+                if match:
+                    cost_str = match.group(1).replace(',', '')
+                    device_cost = float(cost_str)
+                    logging.info(f"Extracted device cost for {url}: £{device_cost}")
+                else:
+                    logging.warning(f"Could not parse cost from text for {url}: '{cost_text}'")
+            except Exception as e:
+                logging.warning(f"Could not find or parse device cost for {url}. It might not be on the page. Error: {e}")
+
             return {
                 "name": name,
                 "description": final_description,
                 "url": url,
                 "storage_options": storage_options,
+                "device_cost": device_cost,
             }
         except Exception as e:
             logging.error(f"Error scraping detail page {url}: {e}")

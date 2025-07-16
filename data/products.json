@@ -5,7 +5,8 @@
     "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-16-pro-max?icmp=mobile-shop-banner-2-iphone-16-pro-max",
     "storage_options": [
       "256GB"
-    ]
+    ],
+    "device_cost": 1184.0
   },
   {
     "name": "Apple iPhone 16",
@@ -13,12 +14,152 @@
     "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-16",
     "storage_options": [
       "128GB"
-    ]
+    ],
+    "device_cost": 750.0
   },
   {
     "name": "Apple iPhone 14",
     "description": "Discover iPhone 14 alongside our Entertainment plans - YouTube Premium or Amazon Prime available with selected Airtime Plans",
     "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-14",
-    "storage_options": []
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 524.0
+  },
+  {
+    "name": "Apple iPhone 16 Pro",
+    "description": "Get the best deals on the Apple iPhone 16 Pro. Enjoy its titanium design, 4K 120 fps Dolby Vision video, Camera Control and the new A18 Pro chip.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-16-pro",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 976.0
+  },
+  {
+    "name": "Apple iPhone 15 Plus",
+    "description": "iPhone 15 Plus features Apple’s Dynamic Island, all day battery life, and a 48-megapixel camera system capturing next generation portraits. Get yours today.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-15-plus",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 750.0
+  },
+  {
+    "name": "Apple iPhone 16 Plus",
+    "description": "Get the best deals on the Apple iPhone 16 Plus. Enjoy Apple Intelligence, a new 48MP Fusion camera with Camera Control and the new A18 chip.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-16-plus",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 858.0
+  },
+  {
+    "name": "Apple iPhone 16 Pro (Refurbished-Pristine)",
+    "description": "Get the best deals on the Apple iPhone 16 Pro. Enjoy its titanium design, 4K 120 fps Dolby Vision video, Camera Control and the new A18 Pro chip.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-16-pro-refurbished-pristine",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 876.0
+  },
+  {
+    "name": "Apple iPhone 14 (Refurbished-Great)",
+    "description": "Discover iPhone 14 Refurbished in Great condition alongside our Entertainment plans - YouTube Premium or Amazon Prime available with selected Airtime Plans.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-14-refurbished-great",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 352.0
+  },
+  {
+    "name": "Apple iPhone 15",
+    "description": "iPhone 15 boasts the new Dynamic Island, a 48-megapixel camera and USB-C charging – all in a durable glass and aluminium design. Get yours today.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-15",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 642.0
+  },
+  {
+    "name": "Apple iPhone 13",
+    "description": "The most advanced dual-camera system ever on iPhone. Lightning-fast A15 Bionic chip. And a brighter 6.1-inch Super Retina XDR display. Buy now.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/apple/iphone-13",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 398.0
+  },
+  {
+    "name": "Samsung Galaxy S25 Ultra",
+    "description": "Get the best deals on the new Samsung Galaxy S25 Ultra phone. Featuring superpowered Galaxy AI, pro-level photography, and a new powerful processor.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/samsung/galaxy-s25-ultra",
+    "storage_options": [
+      "256GB",
+      "512GB",
+      "1TB"
+    ],
+    "device_cost": 1336.0
+  },
+  {
+    "name": "Samsung Galaxy S25",
+    "description": "Get the best deals on the new Samsung Galaxy S25 phone. Featuring super-intuitive Galaxy AI, epic performance, and AI-powered camera.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/samsung/galaxy-s25",
+    "storage_options": [
+      "128GB",
+      "256GB",
+      "512GB"
+    ],
+    "device_cost": 750.0
+  },
+  {
+    "name": "Samsung Galaxy S25+",
+    "description": "Get the best deals on the new Samsung Galaxy S25 Plus phone. Featuring super-intuitive Galaxy AI, epic performance and AI-powered camera.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/samsung/galaxy-s25-plus",
+    "storage_options": [
+      "256GB",
+      "512GB"
+    ],
+    "device_cost": 1038.0
+  },
+  {
+    "name": "Samsung Galaxy Z Flip7",
+    "description": "Get the best deals on the Samsung Galaxy Z Flip7 phone. Ultra unfolds in a slimmer, lighter, more durable flip phone with Galaxy AI and Google Gemini.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/samsung/galaxy-z-flip7",
+    "storage_options": [
+      "128GB",
+      "256GB",
+      "512GB"
+    ],
+    "device_cost": 1022.0
+  },
+  {
+    "name": "Samsung Galaxy Z Fold7",
+    "description": "Get the best deals on the Samsung Galaxy Z Fold7 phone. A handy AI phone in a slimmer, more durable folding package, with Galaxy AI and Google Gemini.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/samsung/galaxy-z-fold7",
+    "storage_options": [
+      "16GB",
+      "256GB",
+      "512GB",
+      "1TB"
+    ],
+    "device_cost": 1814.0
+  },
+  {
+    "name": "Google Pixel 9 Pro XL",
+    "description": "Get the best deals on Google Pixel 9 Pro XL with Gemini. Take pro-level photos and make expert edits with Google's AI on the most powerful Pixel yet.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/google/pixel-9-pro-xl",
+    "storage_options": [
+      "128GB"
+    ],
+    "device_cost": 760.0
+  },
+  {
+    "name": "Google Pixel 9",
+    "description": "Get the best deals on Google Pixel 9 with Gemini. Use Google's AI to take great photos and do things more easily with this phone engineered by Google.",
+    "url": "https://www.vodafone.co.uk/mobile/phones/pay-monthly-contracts/google/pixel-9",
+    "storage_options": [
+      "256GB"
+    ],
+    "device_cost": 858.0
   }
 ]

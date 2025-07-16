@@ -37,7 +37,7 @@ class ScraperService:
         with open(log_file, "a") as f:
             f.write(f"[{timestamp}] {level}: {message}\n")
     
-    async def scrape_and_update(self, force: bool = False, limit: int = 0) -> bool:
+    async def scrape_and_update(self, force: bool = False, limit: int = 0, output_file: str = None) -> bool:
         """Scrape products and update data files"""
         self.log_operation("Starting product scraping service")
         
@@ -63,12 +63,12 @@ class ScraperService:
                 self.log_operation("No products scraped", "ERROR")
                 return False
             
-            # Save to main products file
-            success = self.scraper.save_products(products)
+            # Save to the specified (or default) products file
+            success = self.scraper.save_products(products, filename=output_file)
             if success:
-                self.log_operation(f"Successfully scraped and saved {len(products)} products")
+                self.log_operation(f"Successfully scraped and saved {len(products)} products to {output_file or self.scraper.data_file}")
                 
-                # Save metadata
+                # Save metadata (still using the default metadata file)
                 metadata = {
                     "last_scraped": datetime.now().isoformat(),
                     "product_count": len(products),
@@ -136,6 +136,7 @@ async def main():
     parser.add_argument("--sample", action="store_true", help="Update with sample data")
     parser.add_argument("--limit", type=int, default=0, help="Limit the number of products to scrape (0 for no limit)")
     parser.add_argument("--data-dir", default="data", help="Data directory path")
+    parser.add_argument("--output", default=None, help="Output file path for the scraped products")
     
     args = parser.parse_args()
     
@@ -163,7 +164,7 @@ async def main():
             return 1
     
     # Run scraping
-    success = await service.scrape_and_update(force=args.force, limit=args.limit)
+    success = await service.scrape_and_update(force=args.force, limit=args.limit, output_file=args.output)
     
     if success:
         print("✅ Scraping completed successfully")
