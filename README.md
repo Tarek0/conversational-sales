@@ -1,14 +1,15 @@
-# TOBI: A Conversational Sales Assistant
+# NOBI: A Conversational Sales Assistant
 
-This project is a sophisticated, AI-powered sales assistant for Vodafone UK. It's designed to help customers find the perfect mobile phone by understanding their needs through natural conversation.
+This project is a sophisticated, AI-powered sales assistant for a UK telecoms company. It's designed to help customers find the perfect mobile phone by understanding their needs through natural conversation.
 
 ## Key Features
 
 - **AI-Powered Conversations**: Utilizes OpenAI's GPT-3.5-turbo for realistic, helpful dialogue.
 - **Dynamic Product Search**: Intelligently searches product data based on the user's conversation.
+- **Multi-Step Upsell Journey**: Guides users through a series of upsell offers after a successful recommendation.
 - **Personalized Recommendations**: Gathers user preferences to provide tailored suggestions.
 - **Real-time Data Scraping**: A standalone Playwright service keeps product information up-to-date from the Vodafone UK website.
-- **Session Management**: Maintains conversation history for a coherent user experience.
+- **Session Management**: Maintains conversation history for a coherent user experience, including full session logging for analysis.
 - **Decoupled Architecture**: The FastAPI backend and vanilla JavaScript frontend are fully independent, allowing either to be replaced.
 
 ## Technology Stack
@@ -114,12 +115,17 @@ conversational_sales/
 ├── frontend/
 │   ├── server.py               # Simple Python web server
 │   └── static/                 # HTML, CSS, and JS files
+├── logs/
+│   ├── conversation.log        # General application logs
+│   └── sessions/               # Individual conversation session logs
 ├── scripts/
 │   └── scraper_service.py      # Standalone scraper script
 ├── src/
 │   ├── main.py                 # FastAPI application entrypoint
-│   ├── conversation.py         # Manages conversation logic
+│   ├── conversation.py         # Manages the conversation state machine and logic
 │   ├── product_search.py       # Handles product searching
+│   ├── data_provider.py        # Simulates fetching upsell data from a database/API
+│   ├── upsell_data.py          # Contains the raw data for upsell products
 │   └── models.py               # Pydantic data models
 ├── .env.example                # Example environment variables
 ├── pyproject.toml              # Poetry dependencies
