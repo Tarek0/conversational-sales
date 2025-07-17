@@ -21,37 +21,27 @@ This project is a sophisticated, AI-powered sales assistant for Vodafone UK. It'
 
 ## Getting Started
 
-### Prerequisites
+### 1. One-Time Setup
+
+Follow these steps once to set up your development environment.
 
 - Python 3.9 or higher
 - [Poetry](https://python-poetry.org/docs/#installation) for package management
 - An [OpenAI API key](https://platform.openai.com/account/api-keys)
 
-### 1. Installation
-
-First, clone the repository and install the required dependencies.
-
 ```bash
-# Clone the repository
+# Clone the repository and navigate into the directory
 git clone https://github.com/Tarek0/conversational-sales.git
 cd conversational-sales
 
-# (Apple Silicon Only) Point Poetry to the correct Python interpreter
-# This ensures ARM64 is used, preventing architecture issues.
-poetry env use /opt/homebrew/bin/python3
+# Configure Poetry to create virtual environments inside the project folder
+poetry config virtualenvs.in-project true
 
-# Install Python dependencies using Poetry
+# Install Python dependencies and browser drivers
 poetry install
+playwright install
 
-# Install Playwright's browser drivers
-poetry run playwright install
-```
-
-### 2. Environment Setup
-
-Copy the example environment file and add your OpenAI API key.
-
-```bash
+# Create your environment file
 cp .env.example .env
 ```
 
@@ -63,35 +53,47 @@ ENVIRONMENT=development
 LOG_LEVEL=INFO
 ```
 
-### 3. Scrape Product Data
+### 2. Everyday Usage
+
+#### Activate the Environment
+Each time you open a new terminal to work on the project, you must first activate the virtual environment:
+
+```bash
+source .venv/bin/activate
+```
+
+#### Scrape Product Data (Run At Least Once)
 
 Before starting the application, you need to populate the product database. Run the scraper service to fetch the latest data from the Vodafone UK website.
 
 > **Note**: The first scrape may take a few minutes.
 
 ```bash
+# Make sure your environment is activated before running
 # Run a full scrape of all products
-poetry run python scripts/scraper_service.py --force
+python scripts/scraper_service.py --force
 
 # Or, for a quick test, limit the scrape to 5 products
-poetry run python scripts/scraper_service.py --force --limit 5
+python scripts/scraper_service.py --force --limit 5
 ```
 
-### 4. Running the Application
+#### Running the Application
 
 For the best development experience, run the backend and frontend servers in two separate terminals. This provides clear, independent logs for each service.
 
 **Terminal 1: Start the Backend**
 
 ```bash
-poetry run uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+# Make sure your environment is activated
+uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 ```
 The FastAPI backend will now be running. The `--reload` flag automatically restarts the server when you make code changes.
 
 **Terminal 2: Start the Frontend**
 
 ```bash
-poetry run python frontend/server.py
+# Make sure your environment is activated
+python frontend/server.py
 ```
 This serves the static frontend files.
 

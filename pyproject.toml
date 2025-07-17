@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tobi-conversational-sales"
+name = "tobi-sales"
 version = "0.1.0"
 description = "Conversational Sales Bot for Vodafone UK"
 authors = ["Your Name <your.email@example.com>"]
