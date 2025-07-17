@@ -152,10 +152,14 @@ class ChatManager {
     }
 
     formatMessage(message) {
-        // Basic formatting for links and line breaks
-        return message
-            .replace(/\n/g, '<br>')
-            .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+        // Convert markdown links [Text](URL) to HTML links
+        message = message.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+        
+        // Convert plain URLs to HTML links
+        message = message.replace(/(?<!href=")(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+
+        // Convert newlines to <br> tags
+        return message.replace(/\n/g, '<br>');
     }
 
     formatTime(date) {

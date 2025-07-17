@@ -12,3 +12,7 @@ __pycache__/
 
 # Environment variables
 .env 
+.idea/
+.vscode/
+.history/
+product_plan.md 
