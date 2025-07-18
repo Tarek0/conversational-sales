@@ -4,7 +4,7 @@ This project is a sophisticated, AI-powered sales assistant for a Vodafone UK. I
 
 ## Key Features
 
-- **AI-Powered Conversations**: Utilizes OpenAI's GPT-3.5-turbo for realistic, helpful dialogue.
+- **AI-Powered Conversations**: Utilizes OpenAI's gpt-4o for realistic, helpful dialogue.
 - **Dynamic Product Search**: Intelligently searches product data based on the user's conversation.
 - **Multi-Step Upsell Journey**: Guides users through a series of upsell offers after a successful recommendation.
 - **Personalized Recommendations**: Gathers user preferences to provide tailored suggestions.
@@ -16,7 +16,7 @@ This project is a sophisticated, AI-powered sales assistant for a Vodafone UK. I
 
 - **Backend**: Python 3.9+, FastAPI, LangChain
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **AI Engine**: OpenAI GPT-3.5-turbo
+- **AI Engine**: OpenAI gpt-4o
 - **Web Scraping**: Playwright
 - **Package Management**: Poetry
 

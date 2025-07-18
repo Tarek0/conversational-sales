@@ -120,7 +120,7 @@ class ConversationManager:
         self.product_search_engine = product_search_engine
         self.sessions: Dict[str, ConversationSession] = {}
         self.logger = logging.getLogger(__name__)
-        self.llm = ChatOpenAI(temperature=0.7, model_name="gpt-3.5-turbo")
+        self.llm = ChatOpenAI(temperature=0.7, model_name="gpt-4o")
         self.data_provider = data_provider
 
     def _get_prompt_for_state(self, state: str) -> PromptTemplate:
