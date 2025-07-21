@@ -1,6 +1,6 @@
-# TOBI Scraper Service
+# Web Scraper Service
 
-This directory contains the standalone scraper service for TOBI. The scraper is separated from the main API to allow for independent operation and testing.
+This directory contains the standalone web scraper service. The scraper is separated from the main API to allow for independent operation and testing.
 
 ## Overview
 
@@ -21,6 +21,9 @@ poetry run python scripts/scraper_service.py
 # Force scraping even if data is recent
 poetry run python scripts/scraper_service.py --force
 
+# Limit the number of products to scrape (e.g., 5)
+poetry run python scripts/scraper_service.py --limit 5
+
 # Check scraping status
 poetry run python scripts/scraper_service.py --status
 
@@ -31,46 +34,34 @@ poetry run python scripts/scraper_service.py --sample
 poetry run python scripts/scraper_service.py --data-dir /path/to/data
 ```
 
-### Status Check
+### Monitoring and Testing
+
+During development, you can monitor the scraper and test its output:
 
 ```bash
+# View recent logs
+tail -f data/scraper.log
+
+# Check last scraping status
 poetry run python scripts/scraper_service.py --status
-```
 
-This will show:
-- When data was last scraped
-- Number of products in the database
-- Data age in hours
-- Scraping capabilities available
+# Verify data age and file creation
+ls -la data/products.json
 
-### Sample Data
-
-For development and testing, you can populate the database with sample data:
-
-```bash
+# Populate with sample data and preview it
 poetry run python scripts/scraper_service.py --sample
+cat data/products.json | python -m json.tool | head -20
 ```
 
 ## Dependencies
 
+The scraper service requires `playwright` and `beautifulsoup4`, which are included in the project's `pyproject.toml`. These are installed automatically when you run `poetry install`.
+
 The scraper service tries to use the best available scraping method:
 
-1. **Playwright** (preferred) - For dynamic content and JavaScript rendering
-2. **Requests + BeautifulSoup** - For basic HTML scraping
-3. **Sample Data** - As a fallback for testing
-
-### Installing Dependencies
-
-```bash
-# For Playwright support
-poetry add playwright beautifulsoup4
-poetry run playwright install
-
-# For basic scraping
-poetry add requests beautifulsoup4
-
-# No dependencies needed for sample data
-```
+1.  **Playwright** (preferred) - For dynamic content and JavaScript rendering
+2.  **Requests + BeautifulSoup** - For basic HTML scraping
+3.  **Sample Data** - As a fallback for testing
 
 ## Output Files
 
@@ -96,48 +87,4 @@ The scraper service includes comprehensive error handling:
 - Falls back to different scraping methods if one fails
 - Logs all operations for debugging
 - Provides sample data if scraping is unavailable
-- Checks data freshness to avoid unnecessary scraping
-
-## Local Development
-
-### Running the Scraper
-
-During development, you can run the scraper manually:
-
-```bash
-# Run from project root
-poetry run python scripts/scraper_service.py
-
-# Check current status
-poetry run python scripts/scraper_service.py --status
-
-# Use sample data for testing
-poetry run python scripts/scraper_service.py --sample
-```
-
-### Monitoring
-
-Check scraper health with:
-
-```bash
-# View recent logs
-tail -f data/scraper.log
-
-# Check last scraping status
-poetry run python scripts/scraper_service.py --status
-
-# Verify data age
-ls -la data/products.json
-```
-
-### Testing
-
-Test the scraper with sample data:
-
-```bash
-# Populate with sample data
-poetry run python scripts/scraper_service.py --sample
-
-# Check the generated data
-cat data/products.json | python -m json.tool | head -20
-``` 
+- Checks data freshness to avoid unnecessary scraping 
