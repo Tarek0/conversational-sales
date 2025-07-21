@@ -1,6 +1,6 @@
-# TOBI: A Conversational Sales Assistant
+# A Conversational Sales Assistant
 
-This project is a sophisticated, AI-powered sales assistant for a Vodafone UK. It's designed to help customers find the perfect mobile phone by understanding their needs through natural conversation.
+This project is a sophisticated, AI-powered sales assistant for a telco. It's designed to help customers find the perfect mobile phone by understanding their needs through natural conversation.
 
 ## Key Features
 
