@@ -191,7 +191,9 @@ class ConversationManager:
             
         elif state == CONVERSATION_STATE_ACCESSORIES:
             accessories = self.data_provider.get_accessories()
-            accessories_context = "\n".join([f"- {acc['name']}: {acc['description']}" for acc in accessories.values()])
+            accessories_context = "\n".join(
+                [f"- {acc['name']} ({acc['price']}): {acc['description']}" for acc in accessories.values()]
+            )
 
             template = f"""
             You are TOBI, a friendly and expert conversational sales assistant for Vodafone UK.
@@ -221,7 +223,9 @@ class ConversationManager:
 
         elif state == CONVERSATION_STATE_WATCH:
             watches = self.data_provider.get_watches()
-            watches_context = "\n".join([f"- {watch['name']}: {watch['description']}" for watch in watches.values()])
+            watches_context = "\n".join(
+                [f"- [{watch['name']}]({watch['url']}) ({watch['price']}): {watch['description']}" for watch in watches.values()]
+            )
 
             template = f"""
             You are TOBI, a friendly and expert conversational sales assistant for Vodafone UK.
@@ -231,7 +235,7 @@ class ConversationManager:
             {watches_context}
 
             Key Guidelines:
-            1. Offer the watches listed above.
+            1. Offer the watches listed above, making sure to use the markdown format to make them clickable links.
             2. If the user chooses a watch, confirm their choice and respond with "Perfect! We've added that to your order. Is there anything else I can help you with today?"
             3. If the user declines, respond with "No problem at all. Is there anything else I can help you with today?"
             4. This is the final step, so be prepared to end the conversation gracefully.

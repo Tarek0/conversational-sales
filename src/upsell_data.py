@@ -44,7 +44,8 @@ WATCHES = {
     "apple_watch_series_10": {
         "name": "Apple Watch Series 10 (GPS+4G) Cellular 46mm Aluminium",
         "price": "£499",
-        "description": "The Apple Watch Series 10 is packed with advanced health and fitness features on an even bigger screen, plus faster charging"
+        "description": "The Apple Watch Series 10 is packed with advanced health and fitness features on an even bigger screen, plus faster charging",
+        "url": "https://www.vodafone.co.uk/smart-watches-and-wearables/apple/watch-series-10-gps-plus4g-cellular-46mm-aluminium"
     },
     "apple_watch_ultra_2": {
         "name": "Apple Watch Ultra 2 (GPS+4G) Cellular 49mm Black Titanium Ocean Band",
