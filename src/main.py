@@ -1,11 +1,14 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
 import logging
 from contextlib import asynccontextmanager
+
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
 
 from .conversation import ConversationManager
 from .models import ChatRequest, ChatResponse, HealthResponse
@@ -14,13 +17,30 @@ from .logging_config import setup_logging
 
 # Load environment variables
 load_dotenv()
+
 # Setup logging
-setup_logging()
+setup_logging(log_level=os.getenv("LOG_LEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 # --- Global Variables ---
 # This will be initialized during the lifespan startup event
 conversation_manager: ConversationManager
+
+
+def _parse_cors_allow_origins(raw: str) -> list[str]:
+    """Parse comma-separated origins from env."""
+    origins = [o.strip() for o in (raw or "").split(",")]
+    return [o for o in origins if o]
+
+
+CORS_ALLOW_ORIGINS = _parse_cors_allow_origins(
+    os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+)
+RATE_LIMIT_DEFAULT = os.getenv("RATE_LIMIT_DEFAULT", "60/minute")
+RATE_LIMIT_CHAT = os.getenv("RATE_LIMIT_CHAT", "20/minute")
+
+# SlowAPI limiter
+limiter = Limiter(key_func=get_remote_address, default_limits=[RATE_LIMIT_DEFAULT])
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -41,16 +61,21 @@ app = FastAPI(
     title="TOBI - Conversational Sales Bot API",
     description="API for the TOBI conversational sales assistant.",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
-# Add CORS middleware to allow frontend requests
+# Attach limiter + handler
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+# Add CORS middleware (locked down via env)
+# NOTE: In production, set CORS_ALLOW_ORIGINS to your real frontend(s).
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins for simplicity
+    allow_origins=CORS_ALLOW_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # --- API Endpoints ---
@@ -79,21 +104,25 @@ def health_check():
 
 
 @app.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    """Main chat endpoint"""
+@limiter.limit(RATE_LIMIT_CHAT)
+async def chat(request: Request, chat_request: ChatRequest):
+    """Main chat endpoint (rate-limited)."""
     try:
         result = conversation_manager.process_message(
-            request.message, 
-            request.session_id
+            chat_request.message,
+            chat_request.session_id,
         )
-        
+
         return ChatResponse(**result)
     except Exception as e:
         # Log the full error for debugging
-        logger.error(f"Error during chat processing for session {request.session_id}: {e}", exc_info=True)
+        logger.error(
+            f"Error during chat processing for session {chat_request.session_id}: {e}",
+            exc_info=True,
+        )
         return JSONResponse(
             status_code=500,
-            content={"message": "An unexpected error occurred. Please try again later."}
+            content={"message": "An unexpected error occurred. Please try again later."},
         )
 
 

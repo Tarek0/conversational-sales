@@ -52,6 +52,14 @@ Now, open the `.env` file and set your `OPENAI_API_KEY`.
 OPENAI_API_KEY=your_openai_api_key_here
 ENVIRONMENT=development
 LOG_LEVEL=INFO
+
+# Security
+# Only allow your frontend(s) to call the API.
+CORS_ALLOW_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+
+# Rate limiting
+RATE_LIMIT_DEFAULT=60/minute
+RATE_LIMIT_CHAT=20/minute
 ```
 
 ### 2. Everyday Usage
