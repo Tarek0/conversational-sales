@@ -21,6 +21,7 @@ tiktoken = "^0.9.0"
 langchain = "^0.3.26"
 langchain-community = "^0.3.27"
 langchain-openai = "^0.3.28"
+slowapi = "^0.1.9"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
